@@ -29,42 +29,67 @@ const Navbar = () => {
   }, [])
 
   // ── Scroll behavior (apply px-12 ONLY after scroll) ─────────────────────────────
-  useEffect(() => {
-    const applyScrolled = () => {
-      // Remove outer spacing
-      gsap.to(wrapperRef.current, {
-        paddingTop: 0,
-        paddingLeft: 0,
-        paddingRight: 0,
-        duration: 0.42,
-        ease: 'power2.inOut',
-      })
+useEffect(() => {
+  const applyScrolled = () => {
+    gsap.to(wrapperRef.current, {
+      paddingTop: 0,
+      paddingLeft: 0,
+      paddingRight: 0,
+      duration: 0.42,
+      ease: 'power2.inOut',
+    })
 
-      // Apply px-12 (48px)
-      gsap.to(navBarRef.current, {
-        borderRadius: 0,
-        backgroundColor: '#0e2e79',
-        backdropFilter: 'blur(12px)',
-        paddingLeft: 48,   // ✅ px-12
-        paddingRight: 48,  // ✅ px-12
-        duration: 0.42,
-        ease: 'power2.inOut',
-      })
+    gsap.to(navBarRef.current, {
+      borderRadius: 0,
+      backgroundColor: '#0e2e79',
+      backdropFilter: 'blur(12px)',
+      paddingLeft: 48,
+      paddingRight: 48,
+      duration: 0.42,
+      ease: 'power2.inOut',
+    })
+  }
+
+  const removeScrolled = () => {
+    // Restore original spacing
+    gsap.to(wrapperRef.current, {
+      paddingTop: window.innerWidth >= 640 ? 48 : 24, // sm:pt-12 / pt-6
+      paddingLeft: window.innerWidth >= 640 ? 96 : 8, // sm:px-24 / px-2
+      paddingRight: window.innerWidth >= 640 ? 96 : 8,
+      duration: 0.42,
+      ease: 'power2.inOut',
+    })
+
+    gsap.to(navBarRef.current, {
+      borderRadius: 9999, // back to rounded-full feel
+      backgroundColor: 'transparent',
+      backdropFilter: 'blur(0px)',
+      paddingLeft: window.innerWidth >= 640 ? 32 : 16, // sm:px-8 / px-4
+      paddingRight: window.innerWidth >= 640 ? 32 : 16,
+      duration: 0.42,
+      ease: 'power2.inOut',
+    })
+  }
+
+  const onScroll = () => {
+    const isScrolled =
+      (window.scrollY || document.documentElement.scrollTop) > 60
+
+    if (isScrolled && !scrolledRef.current) {
+      scrolledRef.current = true
+      applyScrolled()
     }
 
-    const onScroll = () => {
-      const isScrolled =
-        (window.scrollY || document.documentElement.scrollTop) > 60
-
-      if (isScrolled && !scrolledRef.current) {
-        scrolledRef.current = true
-        applyScrolled()
-      }
+    // 🔥 THIS PART WAS MISSING
+    if (!isScrolled && scrolledRef.current) {
+      scrolledRef.current = false
+      removeScrolled()
     }
+  }
 
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  window.addEventListener('scroll', onScroll, { passive: true })
+  return () => window.removeEventListener('scroll', onScroll)
+}, [])
 
   // ── Mobile menu init ─────────────────────────────
   useEffect(() => {
@@ -95,7 +120,7 @@ const Navbar = () => {
   }, [menuOpen])
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 mx-2 sm:mx-6">
+    <header className="fixed top-0 left-0 right-0 z-50 ">
 
       {/* Wrapper (default spacing before scroll) */}
       <div
