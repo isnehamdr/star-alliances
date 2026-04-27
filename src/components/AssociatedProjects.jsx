@@ -11,14 +11,14 @@ const logos = [
 
 const AssociatedProjects = () => {
   return (
-    <div className="py-16 lg:py-24 px-4 sm:px-8 lg:px-16 overflow-hidden">
+    <div className="pt-16 lg:pt-24 px-4 sm:px-8 lg:px-16 overflow-hidden">
       {/* Title */}
       <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-center mb-10">
         Associated Hotel Projects
       </h2>
 
       {/* Marquee Wrapper */}
-      <div className="relative w-full overflow-hidden sm:pt-12 pt-4">
+      <div className="relative w-full overflow-hidden sm:pt-12 pt-4 cursor-pointer">
         <div className="flex w-max animate-scroll gap-12 items-center">
           {/* Duplicate for seamless loop */}
           {[...logos, ...logos].map((logo, index) => (
@@ -29,7 +29,7 @@ const AssociatedProjects = () => {
               <img
                 src={logo}
                 alt={`logo-${index}`}
-                className="h-10 sm:h-14 lg:h-16 object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300"
+                className="h-18 sm:h-14 lg:h-16 object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300"
               />
             </div>
           ))}

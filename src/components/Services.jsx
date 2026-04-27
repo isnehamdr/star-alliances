@@ -333,6 +333,8 @@
 //   )
 // }
 
+
+
 import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -413,42 +415,42 @@ const cards = [
     id: 1,
     icon: <HomeIcon />,
     title: 'Hospitality Management',
-    desc: 'Lorem ipsum dolor sit amet consectetur viverra velit faucibus pharetra lorem sed scelerisque sit in nec arcu malesuada.',
+    desc: 'End-to-end operational oversight designed to improve guest satisfaction, team performance, and property profitability.',
     col: 'left',
   },
   {
     id: 2,
     icon: <ChartIcon />,
     title: 'Hospitality Consultancy',
-    desc: 'Lorem ipsum dolor sit amet consectetur viverra velit faucibus pharetra lorem sed scelerisque sit in nec arcu malesuada.',
+    desc: 'Strategic advisory support for owners and operators seeking sharper positioning, stronger systems, and smarter growth decisions.',
     col: 'left',
   },
   {
     id: 3,
     icon: <BankIcon />,
     title: 'Owner Representation',
-    desc: 'Lorem ipsum dolor sit amet consectetur viverra velit faucibus pharetra lorem sed scelerisque sit in nec arcu malesuada.',
+    desc: 'Independent representation that protects owner interests across planning, execution, brand alignment, and operational review.',
     col: 'middle',
   },
   {
     id: 4,
     icon: <CardIcon />,
     title: 'Concept Development & Design',
-    desc: 'Lorem ipsum dolor sit amet consectetur viverra velit faucibus pharetra lorem sed scelerisque sit in nec arcu malesuada.',
+    desc: 'Concept and design guidance that aligns guest experience, commercial goals, and the character of each destination.',
     col: 'middle',
   },
   {
     id: 5,
     icon: <BagIcon />,
     title: 'Food & Beverage Management',
-    desc: 'Lorem ipsum dolor sit amet consectetur viverra velit faucibus pharetra lorem sed scelerisque sit in nec arcu malesuada.',
+    desc: 'Restaurant and bar strategies focused on stronger identity, efficient delivery, and more profitable day-to-day performance.',
     col: 'right',
   },
   {
     id: 6,
     icon: <ShieldIcon />,
     title: 'Mystery Shopper',
-    desc: 'Lorem ipsum dolor sit amet consectetur viverra velit faucibus pharetra lorem sed scelerisque sit in nec arcu malesuada.',
+    desc: 'On-ground guest journey assessments that uncover service gaps, highlight strengths, and support practical improvements.',
     col: 'right',
   },
 ]
@@ -527,50 +529,65 @@ export default function Services() {
   const btnRef = useRef(null)
   const cardRefs = useRef([])
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Header stagger
+ useEffect(() => {
+  const ctx = gsap.context(() => {
+
+    const mm = gsap.matchMedia()
+
+    mm.add({
+      isDesktop: "(min-width: 768px)",
+      isMobile: "(max-width: 767px)"
+    }, (context) => {
+
+      const { isMobile } = context.conditions
+
+      // Initial state
       gsap.set([headingRef.current, subtextRef.current, btnRef.current], {
         opacity: 0,
-        y: 28,
+        y: isMobile ? 15 : 25,
       })
 
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: 'top 80%',
-        once: true,
-        onEnter: () => {
-          gsap.to([headingRef.current, subtextRef.current, btnRef.current], {
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-            ease: 'power3.out',
-            stagger: 0.12,
-          })
+      gsap.set(cardRefs.current, {
+        opacity: 0,
+        y: isMobile ? 20 : 40,
+      })
 
-          // Cards stagger in with slight y movement
-          gsap.fromTo(
-            cardRefs.current,
-            { opacity: 0, y: 40, scale: 0.97 },
-            {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              duration: 0.65,
-              ease: 'power3.out',
-              stagger: {
-                amount: 0.55,
-                from: 'start',
-              },
-              delay: 0.2,
-            }
-          )
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: isMobile ? "top 92%" : "top 78%",
+          end: "bottom 20%",
+          toggleActions: "play reverse play reverse",
         },
+        defaults: {
+          ease: "power1.out", // ✅ smoother global easing
+        }
       })
-    }, sectionRef)
 
-    return () => ctx.revert()
-  }, [])
+      // Header (very smooth fade-up)
+      tl.to([headingRef.current, subtextRef.current, btnRef.current], {
+        opacity: 1,
+        y: 0,
+        duration: isMobile ? 0.45 : 0.6,
+        stagger: 0.08,
+      })
+
+      // Cards (soft stagger flow)
+      tl.to(cardRefs.current, {
+        opacity: 1,
+        y: 0,
+        duration: isMobile ? 0.45 : 0.6,
+        stagger: {
+          each: isMobile ? 0.05 : 0.08,
+        },
+      }, "-=0.35") // ✅ overlap = smoother flow
+
+    })
+
+  }, sectionRef)
+
+  return () => ctx.revert()
+}, [])
 
   // Split cards by column
   const leftCards  = cards.filter(c => c.col === 'left')

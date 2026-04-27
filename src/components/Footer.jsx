@@ -6,7 +6,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 const quickLinks = ['About Us', 'Core Services', 'Hotel Development', 'Projects']
 const serviceLinks = ['Hospitality Management', 'Owner Representation', 'Concept Development', 'Food & Beverage']
-const contactDetails = ['hello@staralliancehospitality.com', '+1 (234) 567-890', 'Dubai, UAE']
+const contactDetails = ['info@staralliance.com', '+9779801145612', 'Maharajgunj, Kathmandu']
 
 const ArrowUpRight = () => (
   <svg
