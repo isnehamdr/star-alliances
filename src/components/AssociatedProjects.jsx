@@ -11,9 +11,9 @@ const logos = [
 
 const AssociatedProjects = () => {
   return (
-    <div className="pt-16 lg:pt-24 px-4 sm:px-8 lg:px-16 overflow-hidden">
+    <div className="pt-16 lg:pt-24 pb-24  mx-2 sm:px-6 lg:px-16 overflow-hidden">
       {/* Title */}
-      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-center mb-10">
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-center mb-6">
         Associated Hotel Projects
       </h2>
 
