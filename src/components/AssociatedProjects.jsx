@@ -11,15 +11,15 @@ const logos = [
 
 const AssociatedProjects = () => {
   return (
-    <div className="pt-16 lg:pt-24 pb-24  mx-2 sm:px-6 lg:px-16 overflow-hidden">
+    <div className="pt-16 lg:pt-24 pb-16 lg:pb-24  mx-2 sm:px-6 lg:px-16 overflow-hidden">
       {/* Title */}
-      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-center mb-6">
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-center mb-6 fade-in-up delay-1">
         Associated Hotel Projects
       </h2>
 
       {/* Marquee Wrapper */}
       <div className="relative w-full overflow-hidden sm:pt-12 pt-4 cursor-pointer">
-        <div className="flex w-max animate-scroll gap-12 items-center">
+        <div className="flex w-max marquee gap-12 items-center">
           {/* Duplicate for seamless loop */}
           {[...logos, ...logos].map((logo, index) => (
             <div
@@ -35,22 +35,6 @@ const AssociatedProjects = () => {
           ))}
         </div>
       </div>
-
-      {/* Tailwind Custom Animation */}
-      <style jsx>{`
-        .animate-scroll {
-          animation: scroll 30s linear infinite;
-        }
-
-        @keyframes scroll {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            transform: translateX(-50%);
-          }
-        }
-      `}</style>
     </div>
   );
 };

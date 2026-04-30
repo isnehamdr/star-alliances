@@ -204,10 +204,10 @@ const Contact = () => {
                   Our team typically responds within 24 hours. We're ready to discuss how we can help your business grow.
                 </p>
                 <a
-                  href="mailto:hello@wealthbank.com"
+                  href="mailto:info@staralliance.com"
                   className="inline-flex items-center gap-2 text-slate-900 font-semibold text-sm hover:text-blue-600 transition-colors"
                 >
-                  hello@wealthbank.com
+                 info@staralliance.com
                   <ArrowRight />
                 </a>
               </div>

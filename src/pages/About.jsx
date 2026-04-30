@@ -74,7 +74,7 @@ const About = () => {
 
   return (
     <>
-    <section ref={sectionRef} className="pt-4 sm:pt-6 pb-12 sm:pb-16 md:pb-20">
+    <section ref={sectionRef} className="pt-4 sm:pt-6 pb-8 sm:pb-16 md:pb-20">
       {/* Outer white card */}
       <div className="bg-white rounded-3xl mx-2 sm:mx-6 overflow-hidden shadow-sm">
 
@@ -114,7 +114,7 @@ const About = () => {
 
        
           <img
-            src="/images/aboutpage.png"
+            src="/images/aboutpage.jpg"
             alt="About Star Alliance Hospitality"
             className="w-full max-w-7xl mx-auto rounded-t-3xl
                        object-cover object-center
@@ -128,7 +128,7 @@ const About = () => {
 
       </div>
         {/* ── Content section ── */}
-        <div className=" pt-6 sm:pt-32 py-16 sm:py-24 max-w-7xl  mx-2 sm:mx-6 ">
+        <div className=" pt-6 sm:pt-32 py-8 sm:py-24 max-w-7xl  mx-2 sm:mx-6 ">
           <div className="flex flex-col lg:flex-row gap-8 md:gap-10 lg:gap-12">
             <div ref={contentTitleRef} className="lg:w-2/5">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-gray-900 
@@ -155,7 +155,7 @@ const About = () => {
         {/* ── Line Divider ── */}
 
     </section>
-    <div className="max-w-7xl mx-auto  ">
+    <div className="max-w-7xl mx-auto sm:block hidden ">
   <hr className="border-t-2 border-gray-300" />
 </div>
     <AssociatedProjects/>

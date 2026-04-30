@@ -1,0 +1,66 @@
+html {
+  scroll-behavior: smooth;
+  min-height: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  background: #f5f7f9;
+}
+
+/* smooth slide / reveal helpers */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(28px);
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.fade-in-up.delay-1 {
+  animation-delay: 0.15s;
+}
+
+.reveal-slow {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: revealSlow 0.9s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes revealSlow {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* marquee helper for the associated projects section */
+.marquee {
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}

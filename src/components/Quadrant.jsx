@@ -205,14 +205,15 @@ const Quadrant = () => {
           })
         })
 
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 88%",
-            toggleActions: "play reverse play reverse",
-          },
-          defaults: { ease: "power2.out" },
-        })
+       const tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: sectionRef.current,
+    start: "top 88%",
+    toggleActions: "play reverse play reverse",
+    invalidateOnRefresh: true, // Recalculates on window resize/refresh
+  },
+  defaults: { ease: "power2.out" },
+})
 
         tl.to(imageRef.current, { opacity: 1, y: 0, duration: 0.55 })
         tl.to(headingRef.current, { opacity: 1, y: 0, duration: 0.45 }, "-=0.3")

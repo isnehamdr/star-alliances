@@ -155,12 +155,13 @@ const ProductCard = ({ icon, title, desc, cardRef }) => {
         <div className="w-10 h-10 flex items-center justify-center">
           {icon}
         </div>
-        <div
+        <a
           ref={arrowRef}
+          href="/services"
           className="w-12 h-12 rounded-lg bg-[#f5f7f9] flex items-center justify-center text-[#1946bb] group-hover:bg-[#1946bb] group-hover:text-white transition-colors duration-300"
         >
           <ArrowDiagonal />
-        </div>
+        </a>
       </div>
 
       <h3 className="text-[#11141a] font-bold text-lg sm:text-xl leading-snug mb-2">
@@ -249,9 +250,9 @@ export default function Servicesection() {
   return (
     <section
       ref={sectionRef}
-      className="py-16 lg:py-24 sm:mx-6 mx-2"
+      className="py-8 lg:py-24 sm:mx-6 mx-2"
     >
-      <div className="rounded-3xl py-6 sm:px-16 px-6">
+      <div className="rounded-3xl py-6 sm:px-16 mx-2">
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 mb-10 sm:mb-12">
           <div ref={headingRef} className="max-w-sm">
             <h2 className="text-[#11141a] font-bold text-3xl sm:text-5xl leading-tight">
@@ -262,7 +263,7 @@ export default function Servicesection() {
           <div ref={subtextRef} className="sm:text-right">
             <div ref={btnRef} className="inline-block">
               <a
-                href="#"
+                href="/services"
                 className="
                   inline-flex items-center gap-2
                   bg-[#0e2555] text-white

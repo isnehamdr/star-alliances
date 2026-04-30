@@ -6,7 +6,7 @@ import Quadrant from '../components/Quadrant'
 import Works from '../components/Works'
 import Development from '../components/Development'
 import TeamMembers from '../components/TeamMembers'
-import Testimonials from '../components/Testimonials'
+// import Testimonials from '../components/Testimonials'
 import Servicesection from '../components/Servicesection'
 
 
@@ -20,7 +20,7 @@ const Home = () => {
       <Quadrant/>
       <Works/>
       <Development/>
-      <Testimonials/>
+      {/* <Testimonials/> */}
       <TeamMembers/>
   
     

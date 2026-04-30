@@ -135,7 +135,7 @@ const Testimonials = () => {
   return (
     <section
       ref={sectionRef}
-      className=" w-full py-12 sm:py-16 lg:py-24 px-4 sm:px-6 lg:px-10"
+      className=" w-full py-8 lg:py-24 px-4 sm:px-6 lg:px-10"
     >
       <div className="">
 

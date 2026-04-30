@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ServicesOverview from '../components/ServicesOverview'
-import Testimonials from '../components/Testimonials'
+// import Testimonials from '../components/Testimonials'
 import Faq from '../components/Faq'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -107,7 +107,7 @@ const Services = () => {
               <img
                 src="/images/bghero4.png"
                 alt="Hospitality service planning and guest experience"
-                className="h-[240px] w-full object-cover object-center transition-transform duration-700 hover:scale-[1.02] sm:h-[320px] lg:h-[440px]"
+                className="h-[240px] w-full object-center object-contain transition-transform duration-700 hover:scale-[1.02] sm:h-[320px] lg:h-[440px]"
                 loading="lazy"
               />
             </div>
@@ -142,7 +142,7 @@ const Services = () => {
       </section>
 
       <ServicesOverview />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <Faq />
     </>
   )

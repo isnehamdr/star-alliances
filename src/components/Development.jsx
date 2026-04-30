@@ -555,7 +555,7 @@ const Development = () => {
           </div>
           <div ref={btnRef} className="flex-shrink-0">
             <a
-              href="#"
+              href="/contact"
               className="inline-flex items-center gap-2 px-5 py-3 sm:px-6 sm:py-3.5 bg-[#0e2555] hover:bg-gray-700 text-white text-sm sm:text-base font-semibold rounded-full transition-all duration-300"
             >
               Build Yours <ArrowRight />

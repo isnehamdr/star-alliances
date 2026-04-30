@@ -4,9 +4,25 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const quickLinks = ['About Us', 'Core Services', 'Hotel Development', 'Projects']
-const serviceLinks = ['Hospitality Management', 'Owner Representation', 'Concept Development', 'Food & Beverage']
-const contactDetails = ['info@staralliance.com', '+9779801145612', 'Maharajgunj, Kathmandu']
+const quickLinks = [
+  { name: 'About Us', href: '/about' },
+  { name: 'Core Services', href: '/services' },
+  { name: 'Hotel Development', href: '/industries' },
+  { name: 'Projects', href: '/services' }
+]
+
+const serviceLinks = [
+  { name: 'Hospitality Management', href: '/' },
+  { name: 'Owner Representation', href: '/' },
+  { name: 'Concept Development', href: '/' },
+  { name: 'Food & Beverage', href: '/' }
+]
+
+const contactDetails = [
+  { type: 'email', value: 'info@staralliance.com', href: 'mailto:info@staralliance.com' },
+  { type: 'phone', value: '+9779801145612', href: 'tel:+9779801145612' },
+  { type: 'address', value: 'Maharajgunj, Kathmandu', href: 'https://maps.google.com/?q=Maharajgunj+Kathmandu' }
+]
 
 const ArrowUpRight = () => (
   <svg
@@ -33,13 +49,20 @@ const Footer = () => {
   const bottomRef = useRef(null)
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const items = [topRowRef.current, ...colsRef.current, bottomRef.current].filter(Boolean)
+    // Small delay to ensure DOM is fully rendered
+    const timer = setTimeout(() => {
+      const ctx = gsap.context(() => {
+        const items = [topRowRef.current, ...colsRef.current, bottomRef.current].filter(Boolean)
+        
+        if (items.length === 0) return
 
-      gsap.fromTo(
-        items,
-        { opacity: 0, y: 36 },
-        {
+        // Set initial state
+        items.forEach(item => {
+          gsap.set(item, { opacity: 0, y: 36 })
+        })
+
+        // Create animation - only plays once, doesn't reverse
+        gsap.to(items, {
           opacity: 1,
           y: 0,
           duration: 0.8,
@@ -48,13 +71,48 @@ const Footer = () => {
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top 88%',
-            once: true,
+            toggleActions: "play none none none", // Only plays once, no reverse
+            invalidateOnRefresh: true,
+            id: "footerAnimation",
           },
-        }
-      )
-    }, sectionRef)
+        })
+      }, sectionRef)
 
-    return () => ctx.revert()
+      // Force ScrollTrigger to refresh with hard parameter
+      ScrollTrigger.refresh(true)
+    }, 100)
+
+    // Handle window resize with debounce
+    let resizeTimeout
+    const handleResize = () => {
+      clearTimeout(resizeTimeout)
+      resizeTimeout = setTimeout(() => {
+        ScrollTrigger.refresh()
+      }, 150)
+    }
+
+    // Handle load event for images/fonts
+    const handleLoad = () => {
+      ScrollTrigger.refresh()
+    }
+
+    window.addEventListener('resize', handleResize)
+    window.addEventListener('load', handleLoad)
+
+    return () => {
+      clearTimeout(timer)
+      clearTimeout(resizeTimeout)
+      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('load', handleLoad)
+      
+      // Kill all ScrollTriggers created for this component
+      ScrollTrigger.getAll().forEach(trigger => {
+        if (trigger.vars.id === "footerAnimation") {
+          trigger.kill()
+        }
+      })
+      ScrollTrigger.refresh()
+    }
   }, [])
 
   return (
@@ -82,10 +140,10 @@ const Footer = () => {
             </div>
 
             <a
-              href="#"
+              href="/contact"
               className="inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#0e2555] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f3e7bf]"
             >
-              Let&apos;s Talk
+              Let's Talk
               <ArrowUpRight />
             </a>
           </div>
@@ -102,13 +160,13 @@ const Footer = () => {
                 Quick Links
               </p>
               <div className="space-y-3">
-                {quickLinks.map((item) => (
+                {quickLinks.map((item, index) => (
                   <a
-                    key={item}
-                    href="#"
+                    key={index}
+                    href={item.href}
                     className="block w-fit text-sm text-white/78 transition-colors duration-300 hover:text-white sm:text-base"
                   >
-                    {item}
+                    {item.name}
                   </a>
                 ))}
               </div>
@@ -119,13 +177,13 @@ const Footer = () => {
                 Services
               </p>
               <div className="space-y-3">
-                {serviceLinks.map((item) => (
+                {serviceLinks.map((item, index) => (
                   <a
-                    key={item}
-                    href="#"
+                    key={index}
+                    href={item.href}
                     className="block w-fit text-sm text-white/78 transition-colors duration-300 hover:text-white sm:text-base"
                   >
-                    {item}
+                    {item.name}
                   </a>
                 ))}
               </div>
@@ -136,8 +194,16 @@ const Footer = () => {
                 Contact
               </p>
               <div className="space-y-3 text-sm text-white/78 sm:text-base">
-                {contactDetails.map((item) => (
-                  <p key={item}>{item}</p>
+                {contactDetails.map((item, index) => (
+                  <a
+                    key={index}
+                    href={item.href}
+                    target={item.type === 'address' ? '_blank' : undefined}
+                    rel={item.type === 'address' ? 'noopener noreferrer' : undefined}
+                    className="block transition-colors duration-300 hover:text-white"
+                  >
+                    {item.value}
+                  </a>
                 ))}
               </div>
             </div>
@@ -149,10 +215,14 @@ const Footer = () => {
           >
             <p>© 2026 Star Alliance Hospitality. All rights reserved.</p>
             <div className="flex flex-wrap gap-4">
-              <a href="https://sait.com.np/" className="transition-colors duration-300 hover:text-white">
+              <a 
+                href="https://sait.com.np/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors duration-300 hover:text-white"
+              >
                 Crafted By : S.A I.T Solution Trade and Concern
               </a>
-              
             </div>
           </div>
         </div>

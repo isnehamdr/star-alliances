@@ -131,6 +131,7 @@ export default function Works() {
           <button
             onMouseEnter={() => setBtnHovered(true)}
             onMouseLeave={() => setBtnHovered(false)}
+            onClick={() => window.location.href = '/contact'}
             className={`
               bg-[#0e2555] text-white border-none rounded-full px-5 py-2.5
               text-sm font-medium cursor-pointer self-start transition-all duration-200

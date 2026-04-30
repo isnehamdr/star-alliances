@@ -1,75 +1,7 @@
-// import React from 'react'
-
-// const About = () => {
-//   return (
-//     <section className=" sm:mx-6 mx-2 ">
-//       <div className="rounded-3xl  sm:px-16 px-6 overflow-hidden grid grid-cols-1 lg:grid-cols-2 ">
-
-//         {/* Text Content */}
-//         <div className="flex flex-col justify-center space-y-4  order-2 lg:order-1">
-
-//           {/* Eyebrow */}
-//           <div className="flex items-center gap-3 text-5xl font-medium ">
-//             {/* <span className="block w-7 h-[1.5px] bg-[#c9a96e]" /> */}
-//             About 
-//           </div>
-
-//           {/* Heading */}
-//           <h2 className="font-serif text-4xl sm:text-5xl font-light text-[#0e2555]">
-//             Staralliance <span className=" text-[#0e2555]">Hospitality</span>
-//           </h2>
-
-//           {/* Divider */}
-//           {/* <div className="w-12 h-[2px] bg-gradient-to-r from-[#c9a96e] to-transparent rounded-full" /> */}
-
-//           {/* Body */}
-//           <p className="text-lg text-gray-700 font-normal max-w-md">
-//             We are hospitality professionals and senior leaders with multi-disciplinary
-//             expertise, broad geographic scope, and notable hands-on experience. We provide
-//             owners with practical, profit-oriented advisory services across a broad range
-//             of property types — acting as hands-on partners implementing recommendations
-//             to drive conversions and growth.
-//           </p>
-
-//           {/* CTA Button */}
-//           <button className="inline-flex items-center gap-2.5 bg-[#0e2555] hover:bg-[#1a3a7a] text-white text-base font-medium tracking-wide px-7 py-3.5 rounded-full w-fit transition-all duration-200 hover:-translate-y-0.5 group">
-//             More About Us
-//             <svg
-//               className="transition-transform duration-200 group-hover:translate-x-1"
-//               width="14" height="14" viewBox="0 0 14 14" fill="none"
-//             >
-//               <path d="M2 7h10M8 3l4 4-4 4" stroke="white" strokeWidth="1.5"
-//                 strokeLinecap="round" strokeLinejoin="round" />
-//             </svg>
-//           </button>
-//         </div>
-
-//         {/* Image */}
-//         <div className="relative min-h-[260px] lg:min-h-[580px] order-1 lg:order-2 rounded-3xl">
-//           <img
-//             src="/images/about.png"
-//             alt="Staralliance Hospitality"
-//             className="absolute inset-0 w-full h-full object-contain "
-//           />
-
-//           {/* Stat Badge */}
-//           {/* <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-md rounded-2xl px-5 py-4 shadow-lg">
-//             <p className="font-serif text-3xl font-semibold text-[#0e2555] leading-none">20+</p>
-//             <p className="text-[11px] text-slate-400 tracking-widest uppercase mt-1">Years of Experience</p>
-//           </div> */}
-//         </div>
-
-//       </div>
-//     </section>
-//   )
-// }
-
-// export default About
-
 import React, { useEffect, useRef, useState } from 'react'
 
 /* ─────────────────────────────────────────────
-   useInView — fires once when element enters viewport
+   useInView — fires when element enters/leaves viewport
 ───────────────────────────────────────────── */
 function useInView(threshold = 0.12) {
   const ref = useRef(null)
@@ -78,10 +10,7 @@ function useInView(threshold = 0.12) {
   useEffect(() => {
     const obs = new IntersectionObserver(
       ([entry]) => { 
-        if (entry.isIntersecting) {
-          setInView(true)
-          obs.unobserve(entry.target) // fires only once
-        }
+        setInView(entry.isIntersecting) // Updates both entering and leaving
       },
       { threshold, rootMargin: '0px 0px -20px 0px' }
     )
