@@ -675,12 +675,14 @@ const Navbar = () => {
   const logoRef = useRef(null);
   const linksRef = useRef([]);
   const mobileMenuRef = useRef(null);
+  const hamburgerRef = useRef(null); // Separate ref for hamburger
   const navigate = useNavigate();
 
   const [menuOpen, setMenuOpen] = useState(false);
   const scrolledRef = useRef(false);
   const lastScrollY = useRef(0);
   const isNavbarVisible = useRef(true);
+  const [isScrolledState, setIsScrolledState] = useState(false);
 
   const location = useLocation();
   const lightBgPages = ['/about', '/services', '/industries', '/contact'];
@@ -705,7 +707,6 @@ const Navbar = () => {
   const handleNavigation = (path) => {
     setMenuOpen(false);
     navigate(path);
-    // Small delay to ensure navigation completes before scrolling
     setTimeout(() => {
       scrollToTop();
     }, 100);
@@ -713,7 +714,7 @@ const Navbar = () => {
 
   // ── Entry animation ─────────────────────────────
   useEffect(() => {
-    const items = [logoRef.current, ...linksRef.current.filter(Boolean)];
+    const items = [logoRef.current, ...linksRef.current.filter(Boolean), hamburgerRef.current].filter(Boolean);
 
     gsap.set(items, { opacity: 0, y: -16 });
     gsap.to(items, {
@@ -726,9 +727,10 @@ const Navbar = () => {
     });
   }, []);
 
-  // ── Scroll behavior (hide navbar by default, show only when scrolling up) ─────────────────────────────
+  // ── Scroll behavior ─────────────────────────────
   useEffect(() => {
     const applyScrolled = () => {
+      setIsScrolledState(true);
       gsap.to(wrapperRef.current, {
         paddingTop: 0,
         paddingLeft: 0,
@@ -749,7 +751,7 @@ const Navbar = () => {
     };
 
     const removeScrolled = () => {
-      // Restore original spacing
+      setIsScrolledState(false);
       gsap.to(wrapperRef.current, {
         paddingTop: window.innerWidth >= 640 ? 48 : 28,
         paddingLeft: window.innerWidth >= 640 ? 24 : 16,
@@ -769,11 +771,9 @@ const Navbar = () => {
       });
     };
 
-    // Hide navbar on scroll down, show on scroll up
     const handleScrollDirection = () => {
       const currentScrollY = window.scrollY || document.documentElement.scrollTop;
 
-      // Always hide navbar when scrolling down (if not at the very top)
       if (currentScrollY > lastScrollY.current && currentScrollY > 20) {
         if (isNavbarVisible.current) {
           gsap.to(wrapperRef.current, {
@@ -784,7 +784,6 @@ const Navbar = () => {
           isNavbarVisible.current = false;
         }
       }
-      // Show navbar when scrolling up
       else if (currentScrollY < lastScrollY.current) {
         if (!isNavbarVisible.current) {
           gsap.to(wrapperRef.current, {
@@ -803,7 +802,6 @@ const Navbar = () => {
       const currentScrollY = window.scrollY || document.documentElement.scrollTop;
       const isScrolled = currentScrollY > 60;
 
-      // Update navbar styling based on scroll position
       if (isScrolled && !scrolledRef.current) {
         scrolledRef.current = true;
         applyScrolled();
@@ -814,16 +812,18 @@ const Navbar = () => {
         removeScrolled();
       }
 
-      // Handle hide/show based on scroll direction
       handleScrollDirection();
     };
 
-    // Initially hide navbar if page is scrolled (but don't animate on load)
     const currentScrollY = window.scrollY || document.documentElement.scrollTop;
     if (currentScrollY > 20) {
       gsap.set(wrapperRef.current, { y: '-100%' });
       isNavbarVisible.current = false;
       lastScrollY.current = currentScrollY;
+      
+      if (currentScrollY > 60) {
+        setIsScrolledState(true);
+      }
     }
 
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -837,25 +837,23 @@ const Navbar = () => {
     }
   }, []);
 
-  // ── Mobile menu toggle with smooth right-to-left animation ───────────────────────────
+  // ── Mobile menu toggle ───────────────────────────
   useEffect(() => {
     if (!mobileMenuRef.current) return;
 
     if (menuOpen) {
-      // Smooth slide-in from right
       gsap.to(mobileMenuRef.current, {
         x: '0%',
         duration: 0.5,
         ease: 'power3.out',
       });
-      // Prevent body scroll when menu is open
+      
       const scrollY = window.scrollY;
       document.body.style.position = 'fixed';
       document.body.style.top = `-${scrollY}px`;
       document.body.style.width = '100%';
       document.body.style.overflow = 'hidden';
 
-      // When mobile menu opens, ensure navbar is visible
       if (!isNavbarVisible.current) {
         gsap.to(wrapperRef.current, {
           y: '0%',
@@ -865,7 +863,6 @@ const Navbar = () => {
         isNavbarVisible.current = true;
       }
     } else {
-      // Restore scroll position when menu closes
       const scrollY = document.body.style.top;
       document.body.style.position = '';
       document.body.style.top = '';
@@ -875,14 +872,12 @@ const Navbar = () => {
         window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
       }
 
-      // Smooth slide-out to right
       gsap.to(mobileMenuRef.current, {
         x: '100%',
         duration: 0.4,
         ease: 'power3.in',
       });
 
-      // When mobile menu closes, hide navbar again if scrolled
       const currentScrollY = window.scrollY || document.documentElement.scrollTop;
       if (currentScrollY > 20 && isNavbarVisible.current) {
         gsap.to(wrapperRef.current, {
@@ -895,34 +890,36 @@ const Navbar = () => {
     }
   }, [menuOpen]);
 
-  // Handle Contact button click
   const handleContactClick = () => {
     handleNavigation('/contact');
   };
 
-  // Scroll to top when route changes
   useEffect(() => {
     scrollToTop();
   }, [location.pathname]);
 
+  const getHamburgerColor = () => {
+    if (menuOpen) return 'text-white';
+    if (isScrolledState) return 'text-white';
+    if (isLightPage) return 'text-[#0e2555]';
+    return 'text-white';
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
-      {/* Wrapper (default spacing before scroll) - Responsive padding */}
       <div
         ref={wrapperRef}
         className="w-full pt-7 sm:pt-6 md:pt-12 px-4 sm:px-6 md:px-24"
       >
-        {/* Navbar - Responsive padding and sizing */}
         <div
           ref={navBarRef}
           className="flex items-center justify-between py-2 px-4 sm:px-5 md:px-8 bg-transparent"
         >
-          {/* Logo - Responsive sizing */}
           <Link
             to="/"
             onClick={() => handleNavigation('/')}
             ref={logoRef}
-            className={`${isLightPage ? 'bg-[#0e2e79] rounded-full px-3 py-1' : ''}`}
+            className={`${isLightPage && !isScrolledState ? 'bg-[#0e2e79] rounded-full px-3 py-1' : ''}`}
           >
             <img
               src="/images/logo.png"
@@ -951,28 +948,25 @@ const Navbar = () => {
             <button
               ref={(el) => (linksRef.current[navLinks.length] = el)}
               onClick={handleContactClick}
-              className="bg-[#0e2555] text-white font-semibold text-base lg:text-lg px-5 py-1.5 rounded-full  transition-colors duration-300"
+              className="bg-[#0e2555] text-white font-semibold text-base lg:text-lg px-5 py-1.5 rounded-full transition-colors duration-300"
             >
               Contact
             </button>
           </div>
 
-        <button
-  ref={(el) => (linksRef.current[navLinks.length + 1] = el)}
-  className={`md:hidden text-2xl sm:text-3xl w-10 h-10 flex items-center justify-center rounded-full transition-all duration-200 ${
-    isLightPage 
-      ? 'text-[#0e2555] hover:bg-[#0e2555]/10 active:bg-[#0e2555]/20' 
-      : 'text-white hover:bg-white/10 active:bg-white/20'
-  }`}
-  onClick={() => setMenuOpen(true)}
-  aria-label="Open menu"
->
-  ☰
-</button>
+          {/* Hamburger Button - Fixed */}
+          <button
+            ref={hamburgerRef}
+            className={`md:hidden text-2xl sm:text-3xl w-10 h-10 flex items-center justify-center rounded-full transition-all duration-200 ${getHamburgerColor()} hover:bg-white/10 active:bg-white/20`}
+            onClick={() => setMenuOpen(true)}
+            aria-label="Open menu"
+          >
+            ☰
+          </button>
         </div>
       </div>
 
-      {/* Mobile Drawer - Smooth right-to-left slide animation */}
+      {/* Mobile Drawer */}
       <div
         ref={mobileMenuRef}
         className="fixed top-0 right-0 w-full h-full bg-[#0e2e79] z-[60] md:hidden flex flex-col shadow-2xl"
@@ -1008,7 +1002,7 @@ const Navbar = () => {
               key={link.name}
               to={link.path}
               onClick={() => handleNavigation(link.path)}
-              className="text-white text-xl sm:text-2xl font-semibold py-4 border-b border-white/10 last:border-0  transition-colors duration-200"
+              className="text-white text-xl sm:text-2xl font-semibold py-4 border-b border-white/10 last:border-0 transition-colors duration-200"
             >
               {link.name}
             </Link>
@@ -1016,7 +1010,7 @@ const Navbar = () => {
 
           <button
             onClick={handleContactClick}
-            className="mt-8 bg-white text-[#060d1f] font-semibold text-base sm:text-lg py-3.5 rounded-full  hover:text-white transition-all duration-300 active:scale-95"
+            className="mt-8 bg-white text-[#060d1f] font-semibold text-base sm:text-lg py-3.5 rounded-full hover:bg-white/90 transition-all duration-300 active:scale-95"
           >
             Contact
           </button>
