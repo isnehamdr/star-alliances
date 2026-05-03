@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://staralliance.com.np/sitemap.xml

@@ -4,6 +4,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import IndustriesOverview from '../components/IndustriesOverview'
 import Faq from '../components/Faq'
+import SEO from '../components/SEO'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -72,6 +73,12 @@ const Industries = () => {
 
   return (
     <>
+  <SEO
+        title="Industries We Serve | Hospitality Experts Nepal"
+        description="We serve hotels, resorts, and hospitality businesses with tailored consulting strategies."
+        url="https://staralliance.com.np/industries"
+      />
+
       <section ref={sectionRef} className="pt-4 sm:pt-6 pb-12 sm:pb-16 md:pb-20">
         <div className="mx-2 overflow-hidden rounded-3xl bg-white shadow-sm sm:mx-6">
           <div className="px-4 pb-10 pt-20 text-center sm:px-6 sm:pb-12 lg:px-8 lg:pt-32">
@@ -112,32 +119,6 @@ const Industries = () => {
             </div>
           </div>
         </div>
-
-        {/* <div className="mx-2 max-w-7xl px-0 pt-16 sm:mx-6 sm:pt-24">
-          <div className="flex flex-col gap-8 lg:flex-row lg:gap-12">
-            <div ref={contentTitleRef} className="lg:w-2/5">
-              <h2 className="text-3xl font-medium leading-tight tracking-tight text-gray-900 sm:text-4xl md:text-5xl">
-                Sector-specific support with a hospitality-first perspective
-              </h2>
-            </div>
-            <div ref={contentTextRef} className="lg:w-3/5">
-              <div className="space-y-6 text-base text-gray-600 sm:text-[17px]">
-                <p className="leading-relaxed">
-                  Every hospitality segment operates differently, from resorts
-                  and restaurants to event venues and wellness destinations. Our
-                  work is shaped around those differences so strategy remains
-                  relevant, practical, and actionable.
-                </p>
-                <p className="leading-relaxed">
-                  We combine operational understanding with commercial thinking
-                  to help businesses improve guest experience, streamline
-                  delivery, and create stronger long-term value within their
-                  specific market.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div> */}
       </section>
 
       <IndustriesOverview />

@@ -6,6 +6,7 @@ import Mission from '../components/Mission'
 import AssociatedProjects from '../components/AssociatedProjects'
 import TeamMembers from '../components/TeamMembers'
 import Faq from '../components/Faq'
+import SEO from '../components/SEO'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -74,6 +75,12 @@ const About = () => {
 
   return (
     <>
+ <SEO
+        title="About Star Alliance Hospitality Nepal"
+        description="Learn about our mission, expertise, and hospitality consulting experience in Nepal."
+        url="https://staralliance.com.np/about"
+      />
+
     <section ref={sectionRef} className="pt-4 sm:pt-6 pb-8 sm:pb-16 md:pb-20">
       {/* Outer white card */}
       <div className="bg-white rounded-3xl mx-2 sm:mx-6 overflow-hidden shadow-sm">

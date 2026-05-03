@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Faq from '../components/Faq'
+import SEO from '../components/SEO'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -132,6 +133,11 @@ const Contact = () => {
 
   return (
     <>
+     <SEO
+        title="Contact Star Alliance Hospitality Nepal"
+        description="Get in touch with our hospitality consulting experts for partnerships and services."
+        url="https://staralliance.com.np/contact"
+      />
     <section ref={sectionRef} className="py-28 md:py-38">
       <div className="max-w-7xl mx-auto px-4 sm:px-0">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">

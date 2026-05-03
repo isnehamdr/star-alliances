@@ -19,9 +19,7 @@ function App() {
         <Route path="/about" element={<About/>} />
         <Route path="/services" element={<Services/>} />
         <Route path="/industries" element={<Industries/>} />
-        <Route path="/contact" element={<Contact/>} />
-        {/* Add a 404 Not Found route for unmatched paths */}
-    
+        <Route path="/contact" element={<Contact/>} />    
       </Routes>
       <Footer/>
     </Router>

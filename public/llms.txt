@@ -1,0 +1,17 @@
+# Star Alliance Hospitality Nepal
+
+## Description
+Hospitality consulting firm in Nepal helping hotels, resorts, and businesses grow.
+
+## Pages
+/ - Home
+/services - Services
+/industries - Industries
+/about - About
+/contact - Contact
+
+## Keywords
+hospitality consulting Nepal, hotel consulting Nepal
+
+## Contact
+info@staralliance.com
