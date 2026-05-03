@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { Link } from 'react-router-dom'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -139,13 +140,13 @@ const Footer = () => {
               </h2>
             </div>
 
-            <a
+            <Link
               href="/contact"
               className="inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#0e2555] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f3e7bf]"
             >
               Let's Talk
               <ArrowUpRight />
-            </a>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 gap-8 py-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_0.9fr_1fr_1fr] lg:gap-10">
@@ -161,13 +162,13 @@ const Footer = () => {
               </p>
               <div className="space-y-3">
                 {quickLinks.map((item, index) => (
-                  <a
+                  <Link
                     key={index}
                     href={item.href}
                     className="block w-fit text-sm text-white/78 transition-colors duration-300 hover:text-white sm:text-base"
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -178,13 +179,13 @@ const Footer = () => {
               </p>
               <div className="space-y-3">
                 {serviceLinks.map((item, index) => (
-                  <a
+                  <Link
                     key={index}
                     href={item.href}
                     className="block w-fit text-sm text-white/78 transition-colors duration-300 hover:text-white sm:text-base"
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -195,7 +196,7 @@ const Footer = () => {
               </p>
               <div className="space-y-3 text-sm text-white/78 sm:text-base">
                 {contactDetails.map((item, index) => (
-                  <a
+                  <Link
                     key={index}
                     href={item.href}
                     target={item.type === 'address' ? '_blank' : undefined}
@@ -203,7 +204,7 @@ const Footer = () => {
                     className="block transition-colors duration-300 hover:text-white"
                   >
                     {item.value}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -215,14 +216,14 @@ const Footer = () => {
           >
             <p>© 2026 Star Alliance Hospitality. All rights reserved.</p>
             <div className="flex flex-wrap gap-4">
-              <a 
+              <Link 
                 href="https://sait.com.np/" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition-colors duration-300 hover:text-white"
               >
                 Crafted By : S.A I.T Solution Trade and Concern
-              </a>
+              </Link>
             </div>
           </div>
         </div>

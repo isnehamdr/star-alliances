@@ -948,7 +948,7 @@ const Navbar = () => {
             <button
               ref={(el) => (linksRef.current[navLinks.length] = el)}
               onClick={handleContactClick}
-              className="bg-[#0e2555] text-white font-semibold text-base lg:text-lg px-5 py-1.5 rounded-full transition-colors duration-300"
+              className="bg-[#0e2555] cursor-pointer text-white font-semibold text-base lg:text-lg px-5 py-1.5 rounded-full transition-colors duration-300"
             >
               Contact
             </button>
@@ -957,7 +957,7 @@ const Navbar = () => {
           {/* Hamburger Button - Fixed */}
           <button
             ref={hamburgerRef}
-            className={`md:hidden text-2xl sm:text-3xl w-10 h-10 flex items-center justify-center rounded-full transition-all duration-200 ${getHamburgerColor()} hover:bg-white/10 active:bg-white/20`}
+            className={`md:hidden text-2xl cursor-pointer sm:text-3xl w-10 h-10 flex items-center justify-center rounded-full transition-all duration-200 ${getHamburgerColor()} hover:bg-white/10 active:bg-white/20`}
             onClick={() => setMenuOpen(true)}
             aria-label="Open menu"
           >
@@ -983,7 +983,7 @@ const Navbar = () => {
           transform: 'translateX(100%)',
         }}
       >
-        <div className="flex items-center justify-between px-5 sm:px-6 py-5 border-b border-white/10">
+        <div className="flex items-center justify-between px-5 sm:px-6 py-5 border-b border-white/10 cursor-pointer">
           <Link to="/" onClick={() => handleNavigation('/')}>
             <img src="/images/logo.png" alt="logo" className="h-9 sm:h-11" />
           </Link>
@@ -1002,7 +1002,7 @@ const Navbar = () => {
               key={link.name}
               to={link.path}
               onClick={() => handleNavigation(link.path)}
-              className="text-white text-xl sm:text-2xl font-semibold py-4 border-b border-white/10 last:border-0 transition-colors duration-200"
+              className="text-white text-xl sm:text-2xl cursor-pointer font-semibold py-4 border-b border-white/10 last:border-0 transition-colors duration-200"
             >
               {link.name}
             </Link>
@@ -1010,7 +1010,7 @@ const Navbar = () => {
 
           <button
             onClick={handleContactClick}
-            className="mt-8 bg-white text-[#060d1f] font-semibold text-base sm:text-lg py-3.5 rounded-full hover:bg-white/90 transition-all duration-300 active:scale-95"
+            className="mt-8 bg-white cursor-pointer text-[#060d1f] font-semibold text-base sm:text-lg py-3.5 rounded-full hover:bg-white/90 transition-all duration-300 active:scale-95"
           >
             Contact
           </button>
