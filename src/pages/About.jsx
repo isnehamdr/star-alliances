@@ -75,11 +75,10 @@ const About = () => {
 
   return (
     <>
- <SEO
-        title="About Star Alliance Hospitality Nepal"
-        description="Learn about our mission, expertise, and hospitality consulting experience in Nepal."
-        url="https://staralliance.com.np/about"
-      />
+<SEO
+  title="About Us | Hospitality Consulting Experts Nepal"
+  description="Learn about Star Alliance Hospitality's consulting expertise in Nepal, including hotel development, operations management, and strategic advisory services for hospitality businesses."
+/>
 
     <section ref={sectionRef} className="pt-4 sm:pt-6 pb-8 sm:pb-16 md:pb-20">
       {/* Outer white card */}
@@ -87,14 +86,14 @@ const About = () => {
 
         {/* ── Text block ── */}
         <div className="pt-20 lg:pt-24 pb-8 sm:pb-10 md:pb-12 px-4 sm:px-6 md:px-8 text-center">
-          <h1
+          <h2
             ref={headingRef}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[3.8rem] font-semibold
                        text-gray-900 leading-tight tracking-tight
                        max-w-sm sm:max-w-md md:max-w-2xl lg:max-w-4xl mx-auto mb-4 sm:mb-5 md:mb-6"
           >
             The story of our existence
-          </h1>
+          </h2>
 
           <p
             ref={paraRef}

@@ -34,7 +34,7 @@ const ScrolltoTop = () => {
     >
       <img
         src="/images/up.png"
-        alt=""
+        alt="up arrow icon"
         aria-hidden="true"
         className="h-4 w-4 object-contain brightness-0 invert sm:h-5 sm:w-5"
       />

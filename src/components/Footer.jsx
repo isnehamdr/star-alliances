@@ -6,23 +6,23 @@ import { Link } from 'react-router-dom'
 gsap.registerPlugin(ScrollTrigger)
 
 const quickLinks = [
-  { name: 'About Us', href: '/about' },
-  { name: 'Core Services', href: '/services' },
-  { name: 'Hotel Development', href: '/industries' },
-  { name: 'Projects', href: '/services' }
+  { name: 'About Us', to: '/about' },
+  { name: 'Core Services', to: '/services' },
+  { name: 'Hotel Development', to: '/industries' },
+  { name: 'Projects', to: '/services' }
 ]
 
 const serviceLinks = [
-  { name: 'Hospitality Management', href: '/' },
-  { name: 'Owner Representation', href: '/' },
-  { name: 'Concept Development', href: '/' },
-  { name: 'Food & Beverage', href: '/' }
+  { name: 'Hospitality Management', to: '/' },
+  { name: 'Owner Representation', to: '/' },
+  { name: 'Concept Development', to: '/' },
+  { name: 'Food & Beverage', to: '/' }
 ]
 
 const contactDetails = [
-  { type: 'email', value: 'info@staralliance.com', href: 'mailto:info@staralliance.com' },
-  { type: 'phone', value: '+9779801145612', href: 'tel:+9779801145612' },
-  { type: 'address', value: 'Maharajgunj, Kathmandu', href: 'https://maps.google.com/?q=Maharajgunj+Kathmandu' }
+  { type: 'email', value: 'info@staralliance.com', to: 'mailto:info@staralliance.com' },
+  { type: 'phone', value: '+9779801145612', to: 'tel:+9779801145612' },
+  { type: 'address', value: 'Maharajgunj, Kathmandu', to: 'https://maps.google.com/?q=Maharajgunj+Kathmandu' }
 ]
 
 const ArrowUpRight = () => (
@@ -141,7 +141,7 @@ const Footer = () => {
             </div>
 
             <Link
-              href="/contact"
+              to="/contact"
               className="inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#0e2555] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f3e7bf]"
             >
               Let's Talk
@@ -164,7 +164,7 @@ const Footer = () => {
                 {quickLinks.map((item, index) => (
                   <Link
                     key={index}
-                    href={item.href}
+                    to={item.to}
                     className="block w-fit text-sm text-white/78 transition-colors duration-300 hover:text-white sm:text-base"
                   >
                     {item.name}
@@ -181,7 +181,7 @@ const Footer = () => {
                 {serviceLinks.map((item, index) => (
                   <Link
                     key={index}
-                    href={item.href}
+                    to={item.to}
                     className="block w-fit text-sm text-white/78 transition-colors duration-300 hover:text-white sm:text-base"
                   >
                     {item.name}
@@ -198,7 +198,7 @@ const Footer = () => {
                 {contactDetails.map((item, index) => (
                   <Link
                     key={index}
-                    href={item.href}
+                    to={item.to}
                     target={item.type === 'address' ? '_blank' : undefined}
                     rel={item.type === 'address' ? 'noopener noreferrer' : undefined}
                     className="block transition-colors duration-300 hover:text-white"
@@ -217,7 +217,7 @@ const Footer = () => {
             <p>© 2026 Star Alliance Hospitality. All rights reserved.</p>
             <div className="flex flex-wrap gap-4">
               <Link 
-                href="https://sait.com.np/" 
+                to="https://sait.com.np/" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition-colors duration-300 hover:text-white"

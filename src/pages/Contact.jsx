@@ -133,11 +133,10 @@ const Contact = () => {
 
   return (
     <>
-     <SEO
-        title="Contact Star Alliance Hospitality Nepal"
-        description="Get in touch with our hospitality consulting experts for partnerships and services."
-        url="https://staralliance.com.np/contact"
-      />
+<SEO
+  title="Contact Us | Hospitality Consultants in Nepal"
+  description="Get in touch with our hospitality consulting team in Nepal. We're ready to discuss your hotel development, operations management, and advisory service needs today."
+/>
     <section ref={sectionRef} className="py-28 md:py-38">
       <div className="max-w-7xl mx-auto px-4 sm:px-0">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
@@ -147,9 +146,9 @@ const Contact = () => {
 
             {/* Title + subtitle */}
             <div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-none">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-none">
                 Get in touch
-              </h1>
+              </h2>
               <p className="mt-4 text-slate-500 text-sm sm:text-base leading-relaxed max-w-sm">
                 Have questions about our banking solutions? We're here to help you navigate your financial journey with confidence.
               </p>

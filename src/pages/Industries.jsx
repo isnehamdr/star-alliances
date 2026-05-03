@@ -73,21 +73,20 @@ const Industries = () => {
 
   return (
     <>
-  <SEO
-        title="Industries We Serve | Hospitality Experts Nepal"
-        description="We serve hotels, resorts, and hospitality businesses with tailored consulting strategies."
-        url="https://staralliance.com.np/industries"
-      />
+<SEO
+  title="Industries We Serve | Hospitality Consulting Nepal"
+  description="We provide hospitality consulting services for hotels, resorts, and hospitality businesses across Nepal. Expert guidance for luxury properties, boutique hotels, and commercial venues."
+/>
 
       <section ref={sectionRef} className="pt-4 sm:pt-6 pb-12 sm:pb-16 md:pb-20">
         <div className="mx-2 overflow-hidden rounded-3xl bg-white shadow-sm sm:mx-6">
           <div className="px-4 pb-10 pt-20 text-center sm:px-6 sm:pb-12 lg:px-8 lg:pt-32">
-            <h1
+            <h2
               ref={headingRef}
               className="mx-auto mb-4 max-w-sm text-3xl font-semibold leading-tight tracking-tight text-gray-900 sm:max-w-xl sm:text-4xl md:max-w-2xl md:text-5xl lg:max-w-4xl lg:text-6xl xl:text-[3.8rem]"
             >
               Industries we serve across the hospitality landscape.
-            </h1>
+            </h2>
 
             <p
               ref={paraRef}

@@ -122,11 +122,11 @@ export default function Works() {
             transition: "opacity 0.6s ease, transform 0.6s ease",
           }}
         >
-          <h1 className="text-3xl md:text-4xl lg:text-[46px] font-bold leading-tight text-gray-900">
+          <h2 className="text-3xl md:text-4xl lg:text-[46px] font-bold leading-tight text-gray-900">
             Explore Associated
             <br />
             Projects
-          </h1>
+          </h2>
 
           <button
             onMouseEnter={() => setBtnHovered(true)}

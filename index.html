@@ -1,38 +1,47 @@
-
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+  <!-- Google tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q2VPNPV30W"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Q2VPNPV30W');
+  </script>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/images/logo.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Figtree:ital,wght@0,300..900;1,300..900&family=Frank+Ruhl+Libre:wght@300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Oswald:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Racing+Sans+One&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  
+  <!-- Default SEO (fallback only - will be overridden by React Helmet) -->
+  <title>Star Alliance Hospitality Nepal</title>
+  <meta name="description" content="Hospitality consulting and hotel development services in Nepal." />
+<link rel="canonical" href={canonicalUrl} key="canonical" />
 
-    <!-- Viewport -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Open Graph default -->
+  <meta property="og:title" content="Star Alliance Hospitality Nepal" />
+  <meta property="og:description" content="Hospitality consulting services in Nepal." />
+  <meta property="og:type" content="website" />
 
-    <!-- Primary SEO -->
-    <title>Star Alliance Hospitality | Hospitality Consulting in Nepal</title>
-    <meta name="description" content="Star Alliance Hospitality provides expert hospitality consulting, advisory, and development services in Nepal. We help hotels, resorts, and businesses grow and optimize operations." />
+  <!-- Schema (important) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Star Alliance Hospitality",
+    "url": "https://staralliance.com.np/",
+    "logo": "https://staralliance.com.np/images/logo.png"
+  }
+  </script>
+</head>
 
-    <!-- Canonical -->
-    <link rel="canonical" href="https://www.staralliancehospitality.com.np/" />
-
-    <!-- Open Graph (for social sharing) -->
-    <meta property="og:title" content="Star Alliance Hospitality" />
-    <meta property="og:description" content="Expert hospitality consulting services in Nepal for hotels, resorts, and businesses." />
-    <meta property="og:image" content="/images/logo.png" />
-    <meta property="og:url" content="https://www.staralliancehospitality.com.np/" />
-    <meta property="og:type" content="website" />
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow&family=Poppins&display=swap" rel="stylesheet">
-
-  </head>
-
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
 </html>
